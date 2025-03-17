@@ -63,7 +63,7 @@ public class StudentDAO extends DAO {
 		Connection con=getConnection();
 		
 		PreparedStatement st=con.prepareStatement(
-				"insert into product(student_id, student_name, student_course) values(?,?,?)");
+				"insert into student(student_id, student_name, student_course) values(?,?,?)");
 		st.setInt(1, student.getStudent_id());
 		st.setString(2, student.getStudent_name());
 		st.setInt(3, student.getStudent_course());

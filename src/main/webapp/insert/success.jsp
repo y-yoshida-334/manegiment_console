@@ -5,12 +5,8 @@
 <div class="main">
 <jsp:include page="/parts/sideMenu.jsp"/>
 <div class="content">
-<h1>Topページ</h1>
-<br>
-<p>
-学生とコースの管理をするシステムです。<br>
-左のメニューから、各機能を選択してください。
-</p>
+<p>登録が完了しました。</p>
+<a href="/manegiment_console/index.jsp"><p>Topページへ</p></a>
 </div>
 </div>
 
