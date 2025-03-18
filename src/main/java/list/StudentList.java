@@ -13,21 +13,44 @@ import jakarta.servlet.http.HttpServletResponse;
 import bean.Student;
 import dao.StudentDAO;
 
-@WebServlet(urlPatterns = {"/function/list"})
+/**
+ * StudentList サーブレット
+ * 学生リストを取得し、リクエスト属性に設定してJSPに転送する
+ */
+@WebServlet(urlPatterns = { "/function/list" })
 public class StudentList extends HttpServlet {
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-	throws ServletException, IOException{
-		PrintWriter out=response.getWriter();
-		try {
-			StudentDAO dao=new StudentDAO();
-			List<Student> list=dao.search("");
-			
-			request.setAttribute("list", list);
-			
-			request.getRequestDispatcher("/list.jsp").forward(request, response);
-		}catch(Exception e) {
-			e.printStackTrace(out);
-		}
-	}
+    /**
+     * GETリクエストを処理するメソッド
+     * 学生リストを取得し、リクエストに設定してJSPへフォワードする
+     * 
+     * @param request  クライアントからのリクエスト情報
+     * @param response クライアントへのレスポンス情報
+     * @throws ServletException サーブレット処理中の例外
+     * @throws IOException      入出力例外
+     */
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        // レスポンスの出力ストリームを取得
+        PrintWriter out = response.getWriter();
+
+        try {
+            // StudentDAOのインスタンスを生成
+            StudentDAO dao = new StudentDAO();
+
+            // 学生情報を取得（空文字を渡して全件検索）
+            List<Student> list = dao.search("");
+
+            // 取得したリストをリクエスト属性に設定
+            request.setAttribute("list", list);
+
+            // JSPページへフォワード
+            request.getRequestDispatcher("/list.jsp").forward(request, response);
+            
+        } catch (Exception e) {
+            // エラー発生時にスタックトレースを出力
+            e.printStackTrace(out);
+        }
+    }
 }

@@ -26,11 +26,12 @@ public class Input extends HttpServlet {
 			
 			Student s=new Student();
 			s.setStudent_id(Integer.parseInt(request.getParameter("student_id")));
-			s.setStudent_name(request.getParameter("student_name"));
-			s.setStudent_course(Integer.parseInt(request.getParameter("student_course")));
+			
+			List<Student> list_s=dao.search(request.getParameter("student_id"));
 			
 			request.setAttribute("list", list);
 			request.setAttribute("s", s);
+			request.setAttribute("list_s", list_s);
 			
 			request.getRequestDispatcher("/update/input.jsp").forward(request, response);
 		}catch(Exception e) {

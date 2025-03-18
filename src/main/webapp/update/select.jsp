@@ -16,13 +16,6 @@
                     </option>
                 </c:forEach>
             </select>
-
-            <!-- 選択された学生の情報を送信するための hidden input -->
-            <c:forEach var="s" items="${list}">
-                <input type="hidden" name="student_name" value="<c:out value='${s.student_name}' />">
-                <input type="hidden" name="student_course" value="<c:out value='${s.student_course}' />">
-            </c:forEach>
-
             <input type="submit" value="送信">
 	</form>
 </div>
