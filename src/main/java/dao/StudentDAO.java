@@ -73,4 +73,32 @@ public class StudentDAO extends DAO {
 		con.close();
 		return line;
 	}
+	
+	public int update(Student student) throws Exception {
+		Connection con=getConnection();
+		
+		PreparedStatement st=con.prepareStatement(
+				"update student set student_name=?, student_course=? where student_id=?");
+		st.setInt(3, student.getStudent_id());
+		st.setString(1, student.getStudent_name());
+		st.setInt(2, student.getStudent_course());
+		int line=st.executeUpdate();
+		
+		st.close();
+		con.close();
+		return line;
+	}
+	
+	public int delete(Student student) throws Exception {
+		Connection con=getConnection();
+		
+		PreparedStatement st=con.prepareStatement(
+				"delete from student where student_id=?");
+		st.setInt(1, student.getStudent_id());
+		int line=st.executeUpdate();
+		
+		st.close();
+		con.close();
+		return line;
+	}
 }

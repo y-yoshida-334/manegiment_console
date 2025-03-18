@@ -1,4 +1,4 @@
-package insert;
+package update;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,10 +13,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import bean.Student;
 import dao.StudentDAO;
 
-@WebServlet(urlPatterns = {"/function/insert/input"})
+@WebServlet(urlPatterns = {"/function/update/input"})
 public class Input extends HttpServlet {
 
-	public void doGet(
+	public void doPost(
 		HttpServletRequest request, HttpServletResponse response
 	) throws ServletException, IOException{
 		PrintWriter out=response.getWriter();
@@ -24,9 +24,15 @@ public class Input extends HttpServlet {
 			StudentDAO dao=new StudentDAO();
 			List<Student> list=dao.searchCourse("");
 			
-			request.setAttribute("list", list);
+			Student s=new Student();
+			s.setStudent_id(Integer.parseInt(request.getParameter("student_id")));
+			s.setStudent_name(request.getParameter("student_name"));
+			s.setStudent_course(Integer.parseInt(request.getParameter("student_course")));
 			
-			request.getRequestDispatcher("/insert/input.jsp").forward(request, response);
+			request.setAttribute("list", list);
+			request.setAttribute("s", s);
+			
+			request.getRequestDispatcher("/update/input.jsp").forward(request, response);
 		}catch(Exception e) {
 			e.printStackTrace(out);
 		}

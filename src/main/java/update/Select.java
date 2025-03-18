@@ -1,4 +1,4 @@
-package insert;
+package update;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,8 +13,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import bean.Student;
 import dao.StudentDAO;
 
-@WebServlet(urlPatterns = {"/function/insert/input"})
-public class Input extends HttpServlet {
+@WebServlet(urlPatterns = {"/function/update/select"})
+public class Select extends HttpServlet {
 
 	public void doGet(
 		HttpServletRequest request, HttpServletResponse response
@@ -22,11 +22,11 @@ public class Input extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		try {
 			StudentDAO dao=new StudentDAO();
-			List<Student> list=dao.searchCourse("");
+			List<Student> list=dao.search("");
 			
 			request.setAttribute("list", list);
 			
-			request.getRequestDispatcher("/insert/input.jsp").forward(request, response);
+			request.getRequestDispatcher("/update/select.jsp").forward(request, response);
 		}catch(Exception e) {
 			e.printStackTrace(out);
 		}
