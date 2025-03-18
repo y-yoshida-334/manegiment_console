@@ -24,13 +24,9 @@ public class Input extends HttpServlet {
 			StudentDAO dao=new StudentDAO();
 			List<Student> list=dao.searchCourse("");
 			
-			Student s=new Student();
-			s.setStudent_id(Integer.parseInt(request.getParameter("student_id")));
-			
 			List<Student> list_s=dao.search(request.getParameter("student_id"));
 			
 			request.setAttribute("list", list);
-			request.setAttribute("s", s);
 			request.setAttribute("list_s", list_s);
 			
 			request.getRequestDispatcher("/update/input.jsp").forward(request, response);
